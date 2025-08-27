@@ -1,7 +1,6 @@
 package org.example.pages;
 
 import aquality.selenium.browser.AqualityServices;
-import aquality.selenium.elements.Element;
 import aquality.selenium.elements.interfaces.*;
 import org.openqa.selenium.By;
 
@@ -39,16 +38,6 @@ public class AvatarAndInterestsPage extends BaseForm {
         uploadImage.sendKeys(filePath);
       //  imageHolder.sendKeys(filePath);
     }
-    private void visibilityHidden(Element element){
-        String script = "arguments[0].style.display = 'block';"
-       + "arguments[0].style.visibility = 'visible';"
-       + "arguments[0].style.opacity = '1';"
-       + "arguments[0].style.position = 'relative';"
-       + "arguments[0].style.zIndex = '9999';"
-        +"arguments[0].removeAttribute('hidden');";
-       AqualityServices.getBrowser().executeScript(script, element.getElement());
-    }
-
     public void checkInterests(int countOfInterests) {
         List<IButton> listInterests = elementFactory
                 .findElements(By.xpath("//*[@class='avatar-and-interests__interests-list__item']"), IButton.class);
@@ -63,7 +52,6 @@ public class AvatarAndInterestsPage extends BaseForm {
             listInterests.get(i).findChildElement(By.className("checkbox"), ICheckBox.class).click();
             i--;
         }
-
     }
 
     public boolean onNextButtonClick() {
