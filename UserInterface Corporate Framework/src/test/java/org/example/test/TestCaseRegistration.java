@@ -8,7 +8,7 @@ import org.example.util.ParseDataUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestCaseOne extends BaseTest {
+public class TestCaseRegistration extends BaseTest {
     private final HomePage homePage = new HomePage();
     private final RegistrationPage registrationPage = new RegistrationPage();
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
@@ -21,7 +21,7 @@ public class TestCaseOne extends BaseTest {
         Assert.assertTrue(registrationPage.isDisplayed());
         registrationPage.inputLoginForm(configObject.personalDataObject().email(),configObject.personalDataObject().password());
         Assert.assertTrue(avatarAndInterestsPage.isDisplayed());
-      //  loginFormPage.setAvatarAndInterests();
+        Assert.assertTrue(avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests()), "Personal page is not displayed");
     }
 
 }

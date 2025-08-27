@@ -5,7 +5,7 @@ import org.example.pages.RegistrationPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestCaseTwo extends BaseTest {
+public class TestCaseCookie extends BaseTest {
     private final RegistrationPage registrationPage = new RegistrationPage();
     private final HomePage homePage = new HomePage();
     @Test
@@ -13,7 +13,6 @@ public class TestCaseTwo extends BaseTest {
         Assert.assertTrue(homePage.isDisplayed());
         homePage.clickHereLink();
         Assert.assertTrue(registrationPage.isDisplayed());
-        registrationPage.cookiesAccept();
-        Assert.assertFalse(registrationPage.cookiesFormIsDisplayed());
+        Assert.assertFalse(registrationPage.cookiesAccept());
     }
 }
