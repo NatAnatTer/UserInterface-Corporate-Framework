@@ -4,9 +4,11 @@ import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.*;
 import org.example.util.FileUploader;
 import org.openqa.selenium.By;
+import org.python.antlr.ast.Str;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 
 public class AvatarAndInterestsPage extends BaseForm {
@@ -24,17 +26,17 @@ public class AvatarAndInterestsPage extends BaseForm {
         super(locator);
     }
 
-    public boolean fillAvatarAndInterestsForm(int countOfInterests) throws InterruptedException, AWTException {
-
+    public boolean fillAvatarAndInterestsForm(int countOfInterests, String path) {
         checkInterests(countOfInterests);
-        uploadAvatarImage();
-       // return onNextButtonClick();
+        uploadAvatarImage(path);
+      //  return onNextButtonClick();
         return true;
     }
 
-    public void uploadAvatarImage() {
-
-        String filePath = "src/test/resources/avatar.jpg"; //"/Users/natalia/Downloads/avatar.jpg";//"src/test/resources/avatar.jpg";
+    public void uploadAvatarImage(String path) {
+       // String path = "src/test/resources/avatar.jpg";
+        File file = new File(path);
+    String filePath = file.getAbsolutePath().toString();
         uploadButton.state().waitForDisplayed();
         uploadButton.click();
         try {
@@ -43,7 +45,7 @@ public class AvatarAndInterestsPage extends BaseForm {
             System.err.println("Error uploading file: " + filePath + ", error: " + e.getMessage());
             e.printStackTrace();
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // Restore interrupted state
+            Thread.currentThread().interrupt();
             System.err.println("Upload interrupted for file: " + filePath + ", error: " + e.getMessage());
             e.printStackTrace();
         }
@@ -67,6 +69,7 @@ public class AvatarAndInterestsPage extends BaseForm {
 
     public boolean onNextButtonClick() {
         nextButton.state().waitForDisplayed();
+        imageHolder.state().waitForDisplayed();
         nextButton.click();
         return personalDetailsPage.isDisplayed();
     }

@@ -23,7 +23,8 @@ public class TestCaseRegistration extends BaseTest {
         Assert.assertTrue(registrationPage.isDisplayed());
         registrationPage.inputLoginForm(configObject.personalDataObject().email(),configObject.personalDataObject().password());
         Assert.assertTrue(avatarAndInterestsPage.isDisplayed());
-        Assert.assertTrue(avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests()), "Personal page is not displayed");
+        avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests(), configObject.filePath());
+        Assert.assertTrue(avatarAndInterestsPage.onNextButtonClick(), "Personal page is not displayed");
     }
 
 }
