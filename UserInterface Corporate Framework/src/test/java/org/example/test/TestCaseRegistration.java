@@ -8,6 +8,8 @@ import org.example.util.ParseDataUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+
 public class TestCaseRegistration extends BaseTest {
     private final HomePage homePage = new HomePage();
     private final RegistrationPage registrationPage = new RegistrationPage();
@@ -15,7 +17,7 @@ public class TestCaseRegistration extends BaseTest {
     private final AvatarAndInterestsPage avatarAndInterestsPage = new AvatarAndInterestsPage();
 
     @Test
-    public void firstTest() {
+    public void firstTest() throws InterruptedException, AWTException {
         Assert.assertTrue(homePage.isDisplayed(), "Home page is not displayed");
         homePage.clickHereLink();
         Assert.assertTrue(registrationPage.isDisplayed());

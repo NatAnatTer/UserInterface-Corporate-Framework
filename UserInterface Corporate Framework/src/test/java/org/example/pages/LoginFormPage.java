@@ -60,12 +60,9 @@ public class LoginFormPage extends BaseForm {
         String domainTLD;
         String[] parseEmail = email.split("@");
         emailBody = parseEmail[0];
-        System.out.println(emailBody);
         String[] parseDomain = parseEmail[1].split("\\.");
         domain = parseDomain[0];
-        System.out.println(domain);
         domainTLD = "." + parseDomain[1];
-        System.out.println(domainTLD);
         return List.of(emailBody, domain, domainTLD);
     }
 

@@ -2,7 +2,7 @@
   "url": "https://userinyerface.com/",
   "timer": "00:00:00",
   "countOfInterests": 3,
-  "filePath": "",
+  "filePath": "src/test/resources/avatar.jpg",
   "personalDataObject": {
     "password": "qwerty!@QWФф1234512345",
     "email": "qwerty@ya.org"

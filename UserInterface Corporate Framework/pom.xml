@@ -50,6 +50,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.robotframework</groupId>
+            <artifactId>robotframework</artifactId>
+            <version>4.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>

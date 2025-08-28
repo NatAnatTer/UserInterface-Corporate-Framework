@@ -2,8 +2,11 @@ package org.example.pages;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.*;
+import org.example.util.FileUploader;
 import org.openqa.selenium.By;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class AvatarAndInterestsPage extends BaseForm {
@@ -17,26 +20,40 @@ public class AvatarAndInterestsPage extends BaseForm {
     private final PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
     private final IButton nextButton = elementFactory.getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
 
+    //   FileUploader fileUploader = new FileUploader();
     public AvatarAndInterestsPage() {
         super(locator);
     }
 
-    public boolean fillAvatarAndInterestsForm(int countOfInterests) {
+    public boolean fillAvatarAndInterestsForm(int countOfInterests) throws InterruptedException, AWTException {
 
-        // checkInterests(countOfInterests);
+        checkInterests(countOfInterests);
         uploadAvatarImage();
-        //  return onNextButtonClick();
+       // return onNextButtonClick();
         return true;
     }
 
-    public void uploadAvatarImage() {
+    public void uploadAvatarImage() throws InterruptedException, AWTException {
+
+        String filePath = "src/test/resources/avatar.jpg"; //"/Users/natalia/Downloads/avatar.jpg";//"src/test/resources/avatar.jpg";
         uploadButton.state().waitForDisplayed();
-        // uploadButton.click();
+        uploadButton.click();
+        try {
+            FileUploader.uploadFile(filePath);
+        } catch (AWTException e) {
+            System.err.println("Error uploading file: " + filePath + ", error: " + e.getMessage());
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restore interrupted state
+            System.err.println("Upload interrupted for file: " + filePath + ", error: " + e.getMessage());
+            e.printStackTrace();
+        }
+       // FileUploader.uploadFile(filePath);
 
         //  visibilityHidden((Element) imageHolder);
         //  imageHolder.state().waitForDisplayed();
-        String filePath = "src/test/resources/2025-08-26 17.37.58.jpg";
-        uploadImage.sendKeys(filePath);
+        //   String filePath = "src/test/resources/avatar.jpg";
+        //  uploadImage.sendKeys(filePath);
         //  imageHolder.sendKeys(filePath);
     }
 
