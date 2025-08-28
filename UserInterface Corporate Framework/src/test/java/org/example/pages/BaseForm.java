@@ -6,13 +6,13 @@ import org.openqa.selenium.By;
 
 public abstract class BaseForm {
     private final String locator;
+    IElementFactory elementFactory = AqualityServices.getElementFactory();
 
     public BaseForm(String locator) {
         this.locator = locator;
     }
 
     public Boolean isDisplayed() {
-        IElementFactory elementFactory = AqualityServices.getElementFactory();
         return elementFactory.getButton(By.className(locator), locator).state().waitForDisplayed();
     }
 }

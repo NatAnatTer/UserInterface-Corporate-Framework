@@ -71,10 +71,9 @@ public class LoginFormPage extends BaseForm {
     }
 
     private void clickOnSubmitCheckbox() {
-        if(elementFactory.getCheckBox(By.className("checkbox"), "checkbox").isChecked()){
+        if (elementFactory.getCheckBox(By.className("checkbox"), "checkbox").isChecked()) {
             elementFactory.getCheckBox(By.className("checkbox"), "checkbox").uncheck();
-        }
-        else {
+        } else {
             elementFactory.getCheckBox(By.className("checkbox"), "checkbox").check();
         }
     }

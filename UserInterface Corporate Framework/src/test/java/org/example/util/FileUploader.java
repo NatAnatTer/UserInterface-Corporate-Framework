@@ -31,14 +31,9 @@ public class FileUploader {
             }
         }
         Thread.sleep(1500);
-        String os = System.getProperty("os.name");
-        if(os.toLowerCase().contains("mac")){
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-        }
-
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        Thread.sleep(1500);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(500);

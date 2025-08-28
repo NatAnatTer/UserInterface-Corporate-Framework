@@ -14,9 +14,9 @@ public class TestCaseTimer extends BaseTest {
 
     @Test
     public void timerTest() {
-        Assert.assertTrue(homePage.isDisplayed());
+        Assert.assertTrue(homePage.isDisplayed(), "Home page is not displayed");
         homePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed());
-        Assert.assertEquals(registrationPage.getTimer(), configObject.timer());
+        Assert.assertTrue(registrationPage.isDisplayed(), "Registration page is not displayed");
+        Assert.assertEquals(registrationPage.getTimer(), configObject.timer(), "Timer is not zero");
     }
 }

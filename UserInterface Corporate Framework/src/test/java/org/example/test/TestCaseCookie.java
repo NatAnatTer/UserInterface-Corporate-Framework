@@ -10,9 +10,9 @@ public class TestCaseCookie extends BaseTest {
     private final HomePage homePage = new HomePage();
     @Test
     public void cookieAcceptTest(){
-        Assert.assertTrue(homePage.isDisplayed());
+        Assert.assertTrue(homePage.isDisplayed(), "Home page is not displayed");
         homePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed());
-        Assert.assertFalse(registrationPage.cookiesAccept());
+        Assert.assertTrue(registrationPage.isDisplayed(), "Registration page is not displayed");
+        Assert.assertFalse(registrationPage.cookiesAccept(), "Cookie is not accepted");
     }
 }
