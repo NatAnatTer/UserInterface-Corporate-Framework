@@ -20,7 +20,6 @@ public class AvatarAndInterestsPage extends BaseForm {
     private final PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
     private final IButton nextButton = elementFactory.getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
 
-    //   FileUploader fileUploader = new FileUploader();
     public AvatarAndInterestsPage() {
         super(locator);
     }
@@ -33,7 +32,7 @@ public class AvatarAndInterestsPage extends BaseForm {
         return true;
     }
 
-    public void uploadAvatarImage() throws InterruptedException, AWTException {
+    public void uploadAvatarImage() {
 
         String filePath = "src/test/resources/avatar.jpg"; //"/Users/natalia/Downloads/avatar.jpg";//"src/test/resources/avatar.jpg";
         uploadButton.state().waitForDisplayed();
@@ -48,13 +47,6 @@ public class AvatarAndInterestsPage extends BaseForm {
             System.err.println("Upload interrupted for file: " + filePath + ", error: " + e.getMessage());
             e.printStackTrace();
         }
-       // FileUploader.uploadFile(filePath);
-
-        //  visibilityHidden((Element) imageHolder);
-        //  imageHolder.state().waitForDisplayed();
-        //   String filePath = "src/test/resources/avatar.jpg";
-        //  uploadImage.sendKeys(filePath);
-        //  imageHolder.sendKeys(filePath);
     }
 
     public void checkInterests(int countOfInterests) {
