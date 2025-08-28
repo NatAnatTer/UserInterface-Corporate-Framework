@@ -43,9 +43,6 @@
       },
       "startArguments": []
     },
-    "safari": {
-      "downloadDir": "/Users/username/Downloads"
-    },
     "opera": {
       "binaryLocation": "%USERPROFILE%\\AppData\\Local\\Programs\\Opera\\launcher.exe",
       "capabilities": {
@@ -60,21 +57,6 @@
         "download.default_directory": "./downloads"
       },
       "startArguments": [ "--remote-debugging-port=9222", "--no-sandbox", "--disable-dev-shm-usage" ],
-      "excludedArguments": []
-    },
-    "yandex": {
-      "binaryLocation": "%USERPROFILE%\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe",
-      "capabilities": {
-      },
-      "options": {
-        "intl.accept_languages": "en",
-        "safebrowsing.enabled": "true",
-        "profile.default_content_settings.popups": "0",
-        "disable-popup-blocking": "true",
-        "download.prompt_for_download": "false",
-        "download.default_directory": "./downloads"
-      },
-      "startArguments": [],
       "excludedArguments": []
     }
   },

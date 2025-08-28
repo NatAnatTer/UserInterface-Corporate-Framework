@@ -13,7 +13,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <aquality.version>4.13.0</aquality.version>
+        <aquality.version>4.14.0</aquality.version>
         <testng.version>7.11.0</testng.version>
         <lombok.version>1.18.38</lombok.version>
         <jackson.version>2.19.1</jackson.version>

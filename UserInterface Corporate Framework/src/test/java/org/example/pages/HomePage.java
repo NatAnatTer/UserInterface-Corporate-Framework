@@ -6,14 +6,13 @@ import org.openqa.selenium.By;
 
 public class HomePage extends BaseForm {
     private static final String locator = "start__button";
+    IElementFactory elementFactory = AqualityServices.getElementFactory();
 
     public HomePage() {
         super(locator);
     }
 
     public void clickHereLink() {
-        String clickableLink = "start__link";
-        IElementFactory elementFactory = AqualityServices.getElementFactory();
-        elementFactory.getLink(By.className(clickableLink), clickableLink).click();
+        elementFactory.getLink(By.className("start__link"), "start link").click();
     }
 }

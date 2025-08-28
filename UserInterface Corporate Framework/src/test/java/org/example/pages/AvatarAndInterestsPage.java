@@ -11,8 +11,9 @@ public class AvatarAndInterestsPage extends BaseForm {
     private final IElementFactory elementFactory = AqualityServices.getElementFactory();
     private final IButton uploadButton = elementFactory.getButton(By.className("avatar-and-interests__upload-button"), "upload");
     private final ITextBox uploadImage = elementFactory.getTextBox(By.className("avatar-and-interests__avatar-box"), "avatar image");
-    private final ITextBox interests = elementFactory.getTextBox(By.className("avatar-and-interests__interests-list"), "list interests");
     private final ITextBox imageHolder = elementFactory.getTextBox(By.className("avatar-and-interests__avatar-image"), "image holder");
+    private final ITextBox interests = elementFactory.getTextBox(By.className("avatar-and-interests__interests-list"), "list interests");
+
     private final PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
     private final IButton nextButton = elementFactory.getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
 
@@ -22,22 +23,23 @@ public class AvatarAndInterestsPage extends BaseForm {
 
     public boolean fillAvatarAndInterestsForm(int countOfInterests) {
 
-       // checkInterests(countOfInterests);
+        // checkInterests(countOfInterests);
         uploadAvatarImage();
-      //  return onNextButtonClick();
+        //  return onNextButtonClick();
         return true;
     }
 
     public void uploadAvatarImage() {
         uploadButton.state().waitForDisplayed();
-       // uploadButton.click();
+        // uploadButton.click();
 
-      //  visibilityHidden((Element) imageHolder);
-      //  imageHolder.state().waitForDisplayed();
+        //  visibilityHidden((Element) imageHolder);
+        //  imageHolder.state().waitForDisplayed();
         String filePath = "src/test/resources/2025-08-26 17.37.58.jpg";
         uploadImage.sendKeys(filePath);
-      //  imageHolder.sendKeys(filePath);
+        //  imageHolder.sendKeys(filePath);
     }
+
     public void checkInterests(int countOfInterests) {
         List<IButton> listInterests = elementFactory
                 .findElements(By.xpath("//*[@class='avatar-and-interests__interests-list__item']"), IButton.class);

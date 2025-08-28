@@ -7,13 +7,13 @@ import org.example.util.ParseDataUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestCaseTimer extends BaseTest{
+public class TestCaseTimer extends BaseTest {
     private final RegistrationPage registrationPage = new RegistrationPage();
     private final HomePage homePage = new HomePage();
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
 
     @Test
-    public void timerTest(){
+    public void timerTest() {
         Assert.assertTrue(homePage.isDisplayed());
         homePage.clickHereLink();
         Assert.assertTrue(registrationPage.isDisplayed());

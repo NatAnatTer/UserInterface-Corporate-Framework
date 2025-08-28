@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 public class RegistrationPage extends BaseForm {
     private final static String locator = "game";
     private final LoginFormPage loginFormPage = new LoginFormPage();
-    private final AvatarAndInterestsPage avatarAndInterestsPage = new AvatarAndInterestsPage();
     private final IElementFactory elementFactory = AqualityServices.getElementFactory();
     private final ILabel helpForm = elementFactory.getLabel(By.className("help-form"), "help form");
     private final IButton hideButton = elementFactory.getButton(By.xpath("//button[contains(@class,'help-form__send-to-bottom-button')]"), "hide");
