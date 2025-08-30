@@ -1,10 +1,14 @@
 package org.example.util;
 
+import org.slf4j.Logger;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class FileUploader {
+    private static final Logger logger = LoggerUtil.getLogger(FileUploader.class);
     public static void uploadFile(String filePath) throws AWTException, InterruptedException {
+        logger.info("Ввод пути к файлу с изображением профиля");
         Robot robot = new Robot();
         Thread.sleep(1000);
         for (char c : filePath.toCharArray()) {

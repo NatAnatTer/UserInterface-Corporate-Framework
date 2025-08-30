@@ -4,12 +4,15 @@ import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.IElementFactory;
 import aquality.selenium.elements.interfaces.ITextBox;
+import aquality.selenium.forms.Form;
+import org.example.util.LoggerUtil;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
 
 import java.util.List;
 
-public class LoginFormPage extends BaseForm {
-    private static final String locator = "login-form";
+public class LoginFormPage extends Form {
+    private final Logger logger = LoggerUtil.getLogger(LoginFormPage.class);
     private final IElementFactory elementFactory = AqualityServices.getElementFactory();
     private final ITextBox password = elementFactory
             .getTextBox(new By.ByXPath("//input[@placeholder='Choose Password']"), "password");
@@ -20,11 +23,13 @@ public class LoginFormPage extends BaseForm {
     private final IButton loginDomainTLDHeader = elementFactory
             .getButton(By.className("dropdown__header"), "loginDomainTLD");
 
-    public LoginFormPage() {
-        super(locator);
+    protected LoginFormPage() {
+        super(By.className("login-form"), "Форма ввода регистрационных данных");
     }
 
+
     public void inputLoginForm(String email, String password) {
+        logger.info("Ввод пароля и почты");
         enterPassword(password);
         enterEmail(email);
         clickOnSubmitCheckbox();

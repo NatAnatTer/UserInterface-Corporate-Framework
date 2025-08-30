@@ -1,18 +1,21 @@
 package org.example.pages;
 
-import aquality.selenium.browser.AqualityServices;
-import aquality.selenium.elements.interfaces.IElementFactory;
+import aquality.selenium.forms.Form;
+import org.example.util.LoggerUtil;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
 
-public class HomePage extends BaseForm {
-    private static final String locator = "start__button";
-    IElementFactory elementFactory = AqualityServices.getElementFactory();
+
+public class HomePage extends Form {
+    private final Logger logger = LoggerUtil.getLogger(HomePage.class);
 
     public HomePage() {
-        super(locator);
+        super(By.className("start__button"), "Домашняя страница");
+    }
+    public void clickHereLink() {
+        logger.info("Нажатие кнопки Далее");
+        getElementFactory().getLink(By.className("start__link"), "start link").click();
     }
 
-    public void clickHereLink() {
-        elementFactory.getLink(By.className("start__link"), "start link").click();
-    }
+
 }

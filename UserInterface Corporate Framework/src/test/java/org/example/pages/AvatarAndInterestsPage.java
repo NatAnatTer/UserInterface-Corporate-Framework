@@ -2,27 +2,30 @@ package org.example.pages;
 
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.*;
+import aquality.selenium.forms.Form;
 import org.example.util.FileUploader;
+import org.example.util.LoggerUtil;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
 
 import java.awt.*;
 import java.io.File;
 import java.util.List;
 
-public class AvatarAndInterestsPage extends BaseForm {
-    private static final String locator = "avatar-and-interests-page";
+public class AvatarAndInterestsPage extends Form {
+    private final Logger logger = LoggerUtil.getLogger(AvatarAndInterestsPage.class);
     private final IElementFactory elementFactory = AqualityServices.getElementFactory();
     private final IButton uploadButton = elementFactory.getButton(By.className("avatar-and-interests__upload-button"), "upload");
     private final ITextBox imageHolder = elementFactory.getTextBox(By.className("avatar-and-interests__avatar-image"), "image holder");
     private final ITextBox interests = elementFactory.getTextBox(By.className("avatar-and-interests__interests-list"), "list interests");
-    private final PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
     private final IButton nextButton = elementFactory.getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
 
     public AvatarAndInterestsPage() {
-        super(locator);
+        super(By.className("avatar-and-interests-page"), "Страница ввода изображения профиля и интересов");
     }
 
     public void fillAvatarAndInterestsForm(int countOfInterests, String path) {
+        logger.info("Заполнение формы выбора интересов и фото профиля");
         checkInterests(countOfInterests);
         uploadAvatarImage(path);
     }
@@ -60,10 +63,10 @@ public class AvatarAndInterestsPage extends BaseForm {
         }
     }
 
-    public boolean onNextButtonClick() {
+    public void onNextButtonClick() {
         nextButton.state().waitForDisplayed();
         imageHolder.state().waitForDisplayed();
         nextButton.click();
-        return personalDetailsPage.isDisplayed();
+
     }
 }
