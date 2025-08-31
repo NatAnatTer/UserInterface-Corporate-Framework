@@ -1,8 +1,7 @@
 package org.example.pages;
 
-import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.elements.interfaces.IElementFactory;
+import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.example.util.LoggerUtil;
@@ -13,15 +12,15 @@ import java.util.List;
 
 public class LoginFormPage extends Form {
     private final Logger logger = LoggerUtil.getLogger(LoginFormPage.class);
-    private final IElementFactory elementFactory = AqualityServices.getElementFactory();
-    private final ITextBox password = elementFactory
+    private final ITextBox password = getElementFactory()
             .getTextBox(new By.ByXPath("//input[@placeholder='Choose Password']"), "password");
-    private final ITextBox loginBody = elementFactory
+    private final ITextBox loginBody = getElementFactory()
             .getTextBox(new By.ByXPath("//input[@placeholder='Your email']"), "loginBody");
-    private final ITextBox loginDomain = elementFactory
+    private final ITextBox loginDomain = getElementFactory()
             .getTextBox(new By.ByXPath("//input[@placeholder='Domain']"), "loginDomain");
-    private final IButton loginDomainTLDHeader = elementFactory
+    private final IButton loginDomainTLDHeader = getElementFactory()
             .getButton(By.className("dropdown__header"), "loginDomainTLD");
+    private final ICheckBox checkPermission = getElementFactory().getCheckBox(By.className("checkbox"), "checkbox");
 
     protected LoginFormPage() {
         super(By.className("login-form"), "Форма ввода регистрационных данных");
@@ -53,7 +52,7 @@ public class LoginFormPage extends Form {
         loginDomainTLDHeader.state().waitForDisplayed();
         loginDomainTLDHeader.click();
         String locatorOfDomain = String.format("%s%s%s", "//*[contains(@class,'dropdown__list-item') and contains(text(),'", domainTLD, "')]");
-        IButton loginDomainTLD = elementFactory
+        IButton loginDomainTLD = getElementFactory()
                 .getButton(new By.ByXPath(locatorOfDomain), "loginDomainTLD");
         loginDomainTLD.state().waitForDisplayed();
         loginDomainTLD.click();
@@ -72,14 +71,14 @@ public class LoginFormPage extends Form {
     }
 
     private void clickOnNextButton() {
-        elementFactory.getLink(By.className("button--secondary"), "next").click();
+        getElementFactory().getLink(By.className("button--secondary"), "next").click();
     }
 
     private void clickOnSubmitCheckbox() {
-        if (elementFactory.getCheckBox(By.className("checkbox"), "checkbox").isChecked()) {
-            elementFactory.getCheckBox(By.className("checkbox"), "checkbox").uncheck();
+        if (checkPermission.isChecked()) {
+            checkPermission.uncheck();
         } else {
-            elementFactory.getCheckBox(By.className("checkbox"), "checkbox").check();
+            checkPermission.check();
         }
     }
 }

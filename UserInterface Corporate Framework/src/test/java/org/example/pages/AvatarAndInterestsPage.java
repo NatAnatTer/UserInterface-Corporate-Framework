@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.elements.interfaces.*;
 import aquality.selenium.forms.Form;
 import org.example.util.FileUploader;
@@ -10,24 +9,26 @@ import org.slf4j.Logger;
 
 import java.awt.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class AvatarAndInterestsPage extends Form {
     private final Logger logger = LoggerUtil.getLogger(AvatarAndInterestsPage.class);
-    private final IElementFactory elementFactory = AqualityServices.getElementFactory();
-    private final IButton uploadButton = elementFactory.getButton(By.className("avatar-and-interests__upload-button"), "upload");
-    private final ITextBox imageHolder = elementFactory.getTextBox(By.className("avatar-and-interests__avatar-image"), "image holder");
-    private final ITextBox interests = elementFactory.getTextBox(By.className("avatar-and-interests__interests-list"), "list interests");
-    private final IButton nextButton = elementFactory.getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
+    private final IButton uploadButton = getElementFactory().getButton(By.className("avatar-and-interests__upload-button"), "upload");
+    private final ITextBox imageHolder = getElementFactory().getTextBox(By.className("avatar-and-interests__avatar-image"), "image holder");
+    private final ITextBox interests = getElementFactory().getTextBox(By.className("avatar-and-interests__interests-list"), "list interests");
+    private final IButton nextButton = getElementFactory().getButton(By.xpath("//button[@name='button' and contains(text(), 'Next')]"), "next button");
 
     public AvatarAndInterestsPage() {
         super(By.className("avatar-and-interests-page"), "Страница ввода изображения профиля и интересов");
     }
 
-    public void fillAvatarAndInterestsForm(int countOfInterests, String path) {
+    public void fillAvatarAndInterestsForm(int countOfInterests, String pathToAvatar) {
         logger.info("Заполнение формы выбора интересов и фото профиля");
         checkInterests(countOfInterests);
-        uploadAvatarImage(path);
+          uploadAvatarImage(pathToAvatar);
     }
 
     public void uploadAvatarImage(String path) {
@@ -48,20 +49,39 @@ public class AvatarAndInterestsPage extends Form {
     }
 
     public void checkInterests(int countOfInterests) {
-        List<IButton> listInterests = elementFactory
-                .findElements(By.xpath("//*[@class='avatar-and-interests__interests-list__item']"), IButton.class);
+        List<IButton> listInterests = getElementFactory()
+                .findElements(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[not(@for='interest_unselectall')]"), IButton.class);
+        logger.info("Ожидаем появления списка интересов");
         interests.state().waitForDisplayed();
-        for (IButton item : listInterests) {
-            if (item.getText().trim().equalsIgnoreCase("Unselect all")) {
-                item.findChildElement(By.className("checkbox"), ICheckBox.class).click();
-            }
-        }
+        IButton unselectAll = getElementFactory().getButton(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[@for='interest_unselectall']"), "unselect all");
+        logger.info("Деактивируем список интересов нажатием чекбокса unselect all");
+        unselectAll.findChildElement(By.className("checkbox"), ICheckBox.class).click();
+
+        logger.info("Выбираем указанное количество случайных интересов");
         int i = countOfInterests;
         while (i > 0) {
-            listInterests.get(i).findChildElement(By.className("checkbox"), ICheckBox.class).click();
-            i--;
+            Set<Integer> indexesOfInterests = new HashSet<>();
+            Random random = new Random(listInterests.size() - 1);
+            while(indexesOfInterests.size()< countOfInterests){
+                int randomIndex = random.nextInt(listInterests.size() - 1);
+                if(!indexesOfInterests.contains(randomIndex)){
+                    indexesOfInterests.add(randomIndex);
+                    listInterests.get(randomIndex).findChildElement(By.className("checkbox"), ICheckBox.class).click();
+                    i--;
+                }
+            }
         }
     }
+//    public static String getRandomText(int length) {
+//        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//        Random random = new Random();
+//        StringBuilder sb = new StringBuilder(length);
+//        for (int i = 0; i < length; i++) {
+//            int index = random.nextInt(characters.length());
+//            sb.append(characters.charAt(index));
+//        }
+//        return sb.toString();
+//    }
 
     public void onNextButtonClick() {
         nextButton.state().waitForDisplayed();

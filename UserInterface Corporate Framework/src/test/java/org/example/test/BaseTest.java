@@ -8,22 +8,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class BaseTest {
-    static Browser browser;
+ //   static Browser browser;
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
     protected BaseTest() {
     }
 
     @BeforeMethod
     public Browser setUpPropertyOfDriver() {
-        browser = AqualityServices.getBrowser();
-        browser.maximize();
-        browser.goTo(configObject.url());
-        browser.waitForPageToLoad();
-        return browser;
+        AqualityServices.getBrowser().maximize();
+        AqualityServices.getBrowser().goTo(configObject.url());
+        AqualityServices.getBrowser().waitForPageToLoad();
+        return AqualityServices.getBrowser();
     }
 
     @AfterMethod
     public void tearDown() {
-            browser.quit();
+        AqualityServices.getBrowser().quit();
     }
 }

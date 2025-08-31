@@ -33,6 +33,7 @@ public class TestCaseRegistration extends BaseTest {
         logger.info("Шаг 3. Ввод логина и пароля");
         registrationPage.inputLoginForm(configObject.personalDataObject().email(), configObject.personalDataObject().password());
         logger.info("Проверка: страница ввода интересов и изображения профиля открыта");
+        avatarAndInterestsPage.state().waitForDisplayed();
         Assert.assertTrue(avatarAndInterestsPage.state().isDisplayed(), "Страница Avatar and interests не отображается");
         logger.info("Шаг 4. Заполнение интересов и ввод изображения профиля");
         avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests(), configObject.filePath());
