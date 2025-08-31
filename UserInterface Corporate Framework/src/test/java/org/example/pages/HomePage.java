@@ -12,10 +12,9 @@ public class HomePage extends Form {
     public HomePage() {
         super(By.className("start__button"), "Домашняя страница");
     }
+
     public void clickHereLink() {
         logger.info("Нажатие кнопки Далее");
         getElementFactory().getLink(By.className("start__link"), "start link").click();
     }
-
-
 }

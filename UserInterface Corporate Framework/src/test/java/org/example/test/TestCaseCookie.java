@@ -12,11 +12,11 @@ import org.testng.annotations.Test;
 @Listeners(TestInvokedMethodListenerUtil.class)
 public class TestCaseCookie extends BaseTest {
     private final Logger logger = LoggerUtil.getLogger(TestCaseCookie.class);
-    private final RegistrationPage registrationPage = new RegistrationPage();
-    private final HomePage homePage = new HomePage();
 
     @Test
     public void cookieAcceptTest() {
+        RegistrationPage registrationPage = new RegistrationPage();
+        HomePage homePage = new HomePage();
         logger.info("Шаг 1. Старт тестирования. Переход на главную страницу");
         Assert.assertTrue(homePage.state().isDisplayed(), "Домашняя страница открыта");
         logger.info("Шаг 2. Клик по ссылке HERE. Переход на страницу регистрации");

@@ -20,7 +20,6 @@ public class RegistrationPage extends Form {
         super(By.className("game"), "Страница регистрации");
     }
 
-
     public void inputLoginForm(int lengthOfEmailBody, int lengthOfDomain, int lengthOfPassword) {
         loginFormPage.inputLoginForm(lengthOfEmailBody, lengthOfDomain, lengthOfPassword);
     }
@@ -45,5 +44,4 @@ public class RegistrationPage extends Form {
         timer.state().waitForDisplayed();
         return timer.getText().trim();
     }
-
 }

@@ -27,7 +27,6 @@ public class LoginFormPage extends Form {
         super(By.className("login-form"), "Форма ввода регистрационных данных");
     }
 
-
     public void inputLoginForm(int lengthOfEmailBody, int lengthOfDomain, int lengthOfPassword) {
         logger.info("Ввод пароля и почты, подтверждение");
         enterEmailAndPassword(lengthOfEmailBody, lengthOfDomain, lengthOfPassword);

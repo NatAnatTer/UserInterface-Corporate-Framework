@@ -27,11 +27,12 @@ public class AvatarAndInterestsPage extends Form {
 
     public void fillAvatarAndInterestsForm(int countOfInterests, String pathToAvatar) {
         logger.info("Заполнение формы выбора интересов и фото профиля");
+        uploadAvatarImage(pathToAvatar);
         checkInterests(countOfInterests);
-          uploadAvatarImage(pathToAvatar);
     }
 
     public void uploadAvatarImage(String path) {
+        logger.info("Загрузка на страницу фото профиля");
         File file = new File(path);
         String filePath = file.getAbsolutePath();
         uploadButton.state().waitForDisplayed();
@@ -49,22 +50,23 @@ public class AvatarAndInterestsPage extends Form {
     }
 
     public void checkInterests(int countOfInterests) {
+        logger.info("Заполнение списка интересов");
         List<IButton> listInterests = getElementFactory()
                 .findElements(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[not(@for='interest_unselectall')]"), IButton.class);
         logger.info("Ожидаем появления списка интересов");
         interests.state().waitForDisplayed();
-        IButton unselectAll = getElementFactory().getButton(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[@for='interest_unselectall']"), "unselect all");
+        IButton unselectAll = getElementFactory()
+                .getButton(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[@for='interest_unselectall']"), "unselect all");
         logger.info("Деактивируем список интересов нажатием чекбокса unselect all");
         unselectAll.findChildElement(By.className("checkbox"), ICheckBox.class).click();
-
         logger.info("Выбираем указанное количество случайных интересов");
         int i = countOfInterests;
         while (i > 0) {
             Set<Integer> indexesOfInterests = new HashSet<>();
             Random random = new Random(listInterests.size() - 1);
-            while(indexesOfInterests.size()< countOfInterests){
+            while (indexesOfInterests.size() < countOfInterests) {
                 int randomIndex = random.nextInt(listInterests.size() - 1);
-                if(!indexesOfInterests.contains(randomIndex)){
+                if (!indexesOfInterests.contains(randomIndex)) {
                     indexesOfInterests.add(randomIndex);
                     listInterests.get(randomIndex).findChildElement(By.className("checkbox"), ICheckBox.class).click();
                     i--;
@@ -74,9 +76,9 @@ public class AvatarAndInterestsPage extends Form {
     }
 
     public void onNextButtonClick() {
+        logger.info("Клик по кнопке перехода на страницу персональных данных");
         nextButton.state().waitForDisplayed();
         imageHolder.state().waitForDisplayed();
         nextButton.click();
-
     }
 }

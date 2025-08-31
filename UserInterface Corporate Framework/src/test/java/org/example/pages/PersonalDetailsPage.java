@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
 public class PersonalDetailsPage extends Form {
-
     public PersonalDetailsPage() {
         super(By.className("personal-details"), "Страница с персональными данными");
         Logger logger = LoggerUtil.getLogger(PersonalDetailsPage.class);

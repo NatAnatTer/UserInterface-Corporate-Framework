@@ -27,7 +27,6 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.aquality-automation/aquality-selenium -->
         <dependency>
             <groupId>com.github.aquality-automation</groupId>
             <artifactId>aquality-selenium</artifactId>

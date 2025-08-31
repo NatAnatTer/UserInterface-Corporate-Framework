@@ -16,14 +16,14 @@ import org.testng.annotations.Test;
 @Listeners(TestInvokedMethodListenerUtil.class)
 public class TestCaseRegistration extends BaseTest {
     private final Logger logger = LoggerUtil.getLogger(TestCaseRegistration.class);
-    private final HomePage homePage = new HomePage();
-    private final RegistrationPage registrationPage = new RegistrationPage();
-    private final AvatarAndInterestsPage avatarAndInterestsPage = new AvatarAndInterestsPage();
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
-    PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
 
     @Test
     public void firstTest() {
+        HomePage homePage = new HomePage();
+        RegistrationPage registrationPage = new RegistrationPage();
+        AvatarAndInterestsPage avatarAndInterestsPage = new AvatarAndInterestsPage();
+        PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
         logger.info("Шаг 1. Старт тестирования. Переход на главную страницу");
         Assert.assertTrue(homePage.state().isDisplayed(), "Домашняя страница открыта");
         logger.info("Шаг 2. Клик по ссылке HERE. Переход на страницу регистрации");
@@ -39,6 +39,7 @@ public class TestCaseRegistration extends BaseTest {
         avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests(), configObject.filePath());
         logger.info("Проверка: страница Персональных данных по кнопке делее открыта");
         avatarAndInterestsPage.onNextButtonClick();
+        personalDetailsPage.state().waitForDisplayed();
         Assert.assertTrue(personalDetailsPage.state().isDisplayed(), "Страница персональных данных не отображается");
     }
 }

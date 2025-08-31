@@ -1,5 +1,6 @@
 package org.example.util;
 
+import org.example.object.ConfigObject;
 import org.slf4j.Logger;
 
 import java.awt.*;
@@ -7,10 +8,11 @@ import java.awt.event.KeyEvent;
 
 public class FileUploader {
     private static final Logger logger = LoggerUtil.getLogger(FileUploader.class);
+    private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
     public static void uploadFile(String filePath) throws AWTException, InterruptedException {
         logger.info("Ввод пути к файлу с изображением профиля");
         Robot robot = new Robot();
-        Thread.sleep(1000);
+        robot.delay(configObject.countOfPauseOfUploadImages());
         for (char c : filePath.toCharArray()) {
             int keyCode = KeyEvent.getExtendedKeyCodeForChar(c);
             if (keyCode != KeyEvent.VK_UNDEFINED) {
@@ -34,12 +36,12 @@ public class FileUploader {
                 System.err.println("Cannot type character: " + c);
             }
         }
-        Thread.sleep(1500);
+        robot.delay(configObject.countOfPauseOfUploadImages());
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
-        Thread.sleep(1500);
+        robot.delay(configObject.countOfPauseOfUploadImages());
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
-        Thread.sleep(500);
+        robot.delay(configObject.countOfPauseOfUploadImages());
     }
 }

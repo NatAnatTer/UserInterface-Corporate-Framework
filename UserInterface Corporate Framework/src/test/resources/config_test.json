@@ -2,6 +2,7 @@
   "url": "https://userinyerface.com/",
   "timer": "00:00:00",
   "countOfInterests": 3,
+  "countOfPauseOfUploadImages": 1500,
   "filePath": "src/test/resources/avatar.jpg",
   "personalDataObject": {
     "lengthOfEmailBody": 6,

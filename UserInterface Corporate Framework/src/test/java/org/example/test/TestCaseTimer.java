@@ -14,14 +14,14 @@ import org.testng.annotations.Test;
 @Listeners(TestInvokedMethodListenerUtil.class)
 public class TestCaseTimer extends BaseTest {
     private final Logger logger = LoggerUtil.getLogger(TestCaseTimer.class);
-    private final RegistrationPage registrationPage = new RegistrationPage();
-    private final HomePage homePage = new HomePage();
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
 
     @Test
     public void timerTest() {
+        RegistrationPage registrationPage = new RegistrationPage();
+        HomePage homePage = new HomePage();
         logger.info("Шаг 1. Старт тестирования. Переход на главную страницу");
-     //   Assert.assertTrue(homePage.isDisplayed(), "Домашняя страница открыта");
+        Assert.assertTrue(homePage.state().isDisplayed(), "Домашняя страница открыта");
         logger.info("Шаг 2. Клик по ссылке HERE. Переход на страницу регистрации");
         homePage.clickHereLink();
         Assert.assertTrue(registrationPage.state().isDisplayed(), "Страница регистрации не отображается");
