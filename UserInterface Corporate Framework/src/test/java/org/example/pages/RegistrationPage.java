@@ -21,8 +21,8 @@ public class RegistrationPage extends Form {
     }
 
 
-    public void inputLoginForm(String email, String password) {
-        loginFormPage.inputLoginForm(email, password);
+    public void inputLoginForm(int lengthOfEmailBody, int lengthOfDomain, int lengthOfPassword) {
+        loginFormPage.inputLoginForm(lengthOfEmailBody, lengthOfDomain, lengthOfPassword);
     }
 
     public boolean cookiesAccept() {

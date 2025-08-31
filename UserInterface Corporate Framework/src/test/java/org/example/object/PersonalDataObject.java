@@ -1,4 +1,4 @@
 package org.example.object;
 
-public record PersonalDataObject(String password, String email) {
+public record PersonalDataObject(int lengthOfEmailBody, int lengthOfPassword, int lengthOfDomain) {
 }
