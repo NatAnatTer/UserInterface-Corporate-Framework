@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class FileUploader {
     private static final Logger logger = LoggerUtil.getLogger(FileUploader.class);
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
-    public static void uploadFile(String filePath)  { //throws AWTException, InterruptedException
+    public static void uploadFile(String filePath)  {
         logger.info("Ввод пути к файлу с изображением профиля");
         try {
             Robot robot = new Robot();
@@ -33,7 +33,7 @@ public class FileUploader {
                         }
                     }
                 } else {
-                    System.err.println("Cannot type character: " + c);
+                    System.err.printf("Cannot type character: %c%n", c);
                 }
             }
             robot.delay(configObject.countOfPauseOfUploadImages());
@@ -43,13 +43,12 @@ public class FileUploader {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(configObject.countOfPauseOfUploadImages());
-
         }catch (AWTException e) {
-            System.err.println("Error uploading file: " + filePath + ", error: " + e.getMessage());
+            System.err.printf("Error uploading file: %s, error: %s%n", filePath, e.getMessage());
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             Thread.currentThread().interrupt();
-            System.err.println("Upload interrupted for file: " + filePath + ", error: " + e.getMessage());
+            System.err.printf("Upload interrupted for file: %s, error: %s%n%n", filePath, e.getMessage());
             e.printStackTrace();
         }
     }

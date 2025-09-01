@@ -4,7 +4,9 @@ import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
+import org.example.object.ConfigObject;
 import org.example.util.LoggerUtil;
+import org.example.util.ParseDataUtil;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
@@ -22,23 +24,26 @@ public class LoginFormPage extends Form {
     private final IButton loginDomainTLDHeader = getElementFactory()
             .getButton(By.className("dropdown__header"), "loginDomainTLD");
     private final ICheckBox checkPermission = getElementFactory().getCheckBox(By.className("checkbox"), "checkbox");
+    private final IButton nextButton = getElementFactory().getButton(By.className("button--secondary"), "next");
+    private final String dropDownListLocator = "dropdown__list-item";
+    private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
 
     protected LoginFormPage() {
         super(By.className("login-form"), "Форма ввода регистрационных данных");
     }
 
-    public void inputLoginForm(int lengthOfEmailBody, int lengthOfDomain, int lengthOfPassword) {
+    public void inputLoginForm() {
         logger.info("Ввод пароля и почты, подтверждение");
-        enterEmailAndPassword(lengthOfEmailBody, lengthOfDomain, lengthOfPassword);
+        enterEmailAndPassword();
         clickOnSubmitCheckbox();
         clickOnNextButton();
     }
 
-    private void enterEmailAndPassword(int lengthOfEmailBody, int lengthOfDomain, int lengthOfPassword) {
+    private void enterEmailAndPassword() {
         logger.info("Получаем случайным образом сгенерированные email и пароль");
-        String emailBody = getRandomEmail(lengthOfEmailBody);
-        String domain = getRandomEmail(lengthOfDomain);
-        String passwordGenerated = getRandomPassword(lengthOfPassword, emailBody);
+        String emailBody = getRandomEmail(configObject.personalDataObject().lengthOfEmailBody());
+        String domain = getRandomEmail(configObject.personalDataObject().lengthOfDomain());
+        String passwordGenerated = getRandomPassword(configObject.personalDataObject().lengthOfPassword(), emailBody);
         logger.info("Вводим случайным образом сгенерированные email и пароль на форму для ввода");
         loginBody.state().waitForDisplayed();
         loginBody.clearAndType(emailBody);
@@ -47,7 +52,7 @@ public class LoginFormPage extends Form {
         loginDomainTLDHeader.state().waitForDisplayed();
         loginDomainTLDHeader.click();
         List<IButton> listOfDomains = getElementFactory()
-                .findElements(By.className("dropdown__list-item"), IButton.class);
+                .findElements(By.className(dropDownListLocator), IButton.class);
         listOfDomains.get(getRandomDomainTLD(listOfDomains.size())).click();
         password.state().waitForDisplayed();
         password.clearAndType(passwordGenerated);
@@ -95,7 +100,7 @@ public class LoginFormPage extends Form {
     }
 
     private void clickOnNextButton() {
-        getElementFactory().getLink(By.className("button--secondary"), "next").click();
+        nextButton.click();
     }
 
     private void clickOnSubmitCheckbox() {

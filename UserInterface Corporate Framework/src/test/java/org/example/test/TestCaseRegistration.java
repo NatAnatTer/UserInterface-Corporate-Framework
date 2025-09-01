@@ -31,14 +31,14 @@ public class TestCaseRegistration extends BaseTest {
         logger.info("Проверка: страница регистрации открыта");
         Assert.assertTrue(registrationPage.state().isDisplayed());
         logger.info("Шаг 3. Ввод логина и пароля");
-        registrationPage.inputLoginForm(configObject.personalDataObject().lengthOfEmailBody(), configObject.personalDataObject().lengthOfDomain(), configObject.personalDataObject().lengthOfPassword());
+        registrationPage.inputLoginForm();
         logger.info("Проверка: страница ввода интересов и изображения профиля открыта");
         avatarAndInterestsPage.state().waitForDisplayed();
         Assert.assertTrue(avatarAndInterestsPage.state().isDisplayed(), "Страница Avatar and interests не отображается");
         logger.info("Шаг 4. Заполнение интересов и ввод изображения профиля");
         avatarAndInterestsPage.fillAvatarAndInterestsForm(configObject.countOfInterests(), configObject.filePath());
         logger.info("Проверка: страница Персональных данных по кнопке делее открыта");
-        avatarAndInterestsPage.onNextButtonClick();
+        avatarAndInterestsPage.clickNextButton();
         personalDetailsPage.state().waitForDisplayed();
         Assert.assertTrue(personalDetailsPage.state().isDisplayed(), "Страница персональных данных не отображается");
     }
