@@ -7,7 +7,6 @@ import org.example.util.LoggerUtil;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
-import java.awt.*;
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
@@ -35,18 +34,13 @@ public class AvatarAndInterestsPage extends Form {
         logger.info("Загрузка на страницу фото профиля");
         File file = new File(path);
         String filePath = file.getAbsolutePath();
+        clickOnAvatarUploadButton();
+        FileUploader.uploadFile(filePath);
+    }
+
+    public void clickOnAvatarUploadButton() {
         uploadButton.state().waitForDisplayed();
         uploadButton.click();
-        try {
-            FileUploader.uploadFile(filePath);
-        } catch (AWTException e) {
-            System.err.println("Error uploading file: " + filePath + ", error: " + e.getMessage());
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.err.println("Upload interrupted for file: " + filePath + ", error: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     public void checkInterests(int countOfInterests) {
