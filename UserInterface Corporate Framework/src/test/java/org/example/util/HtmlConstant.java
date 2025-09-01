@@ -1,5 +1,5 @@
 package org.example.util;
 
-public class CssConstant {
+public class HtmlConstant {
     public static final String CHECKBOX = "checkbox";
 }

@@ -71,5 +71,8 @@
     "comparisonWidth": 16,
     "comparisonHeight": 16,
     "pathToDumps": "./src/test/resources/visualDumps/"
+  },
+  "application": {
+    "url": "https://userinyerface.com/"
   }
 }

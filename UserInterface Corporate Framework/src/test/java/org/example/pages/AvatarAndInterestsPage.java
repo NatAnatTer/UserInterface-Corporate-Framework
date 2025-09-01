@@ -2,7 +2,7 @@ package org.example.pages;
 
 import aquality.selenium.elements.interfaces.*;
 import aquality.selenium.forms.Form;
-import org.example.util.CssConstant;
+import org.example.util.HtmlConstant;
 import org.example.util.FileUploader;
 import org.example.util.LoggerUtil;
 import org.openqa.selenium.By;
@@ -52,7 +52,7 @@ public class AvatarAndInterestsPage extends Form {
         logger.info("Ожидаем появления списка интересов");
         interests.state().waitForDisplayed();
         logger.info("Деактивируем список интересов нажатием чекбокса unselect all");
-        unselectAll.findChildElement(By.className(CssConstant.CHECKBOX), ICheckBox.class).click();
+        unselectAll.findChildElement(By.className(HtmlConstant.CHECKBOX), ICheckBox.class).click();
         logger.info("Выбираем указанное количество случайных интересов");
         int i = countOfInterests;
         while (i > 0) {
@@ -62,7 +62,7 @@ public class AvatarAndInterestsPage extends Form {
                 int randomIndex = random.nextInt(listInterests.size() - 1);
                 if (!indexesOfInterests.contains(randomIndex)) {
                     indexesOfInterests.add(randomIndex);
-                    listInterests.get(randomIndex).findChildElement(By.className(CssConstant.CHECKBOX), ICheckBox.class).click();
+                    listInterests.get(randomIndex).findChildElement(By.className(HtmlConstant.CHECKBOX), ICheckBox.class).click();
                     i--;
                 }
             }
