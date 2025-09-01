@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class ParseDataUtil {
-
     private static final ConfigObject configObject;
     private static final File fileTest = new File("src/test/resources/config_test.json");
     private static final File fileSettings = new File("src/test/resources/settings.json");
@@ -28,7 +27,7 @@ public class ParseDataUtil {
         return configObject;
     }
 
-    public static String parseSettings(){
+    public static String parseSettings() {
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(fileSettings);

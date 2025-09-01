@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class RandomGenerator {
     private static final Logger logger = Logger.getLogger(RandomGenerator.class);
+
     public static String getRandomEmail(int lengthOfEmailBody) {
         logger.info("Генерируем случайным образом строку заданной длины для email и домена");
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -17,6 +18,7 @@ public class RandomGenerator {
         }
         return sb.toString();
     }
+
     public static String getRandomPassword(int lengthOfPassword, String emailBody) {
         logger.info("Генерируем случайным образом пароль");
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -39,6 +41,7 @@ public class RandomGenerator {
         }
         return sb.toString();
     }
+
     public static int getRandomDomainTLD(int lengthOfListDomain) {
         logger.info("Генерируем случайным образом домен");
         Random random = new Random(lengthOfListDomain - 1);

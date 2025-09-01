@@ -9,7 +9,8 @@ import java.awt.event.KeyEvent;
 public class FileUploader {
     private static final Logger logger = LoggerUtil.getLogger(FileUploader.class);
     private static final ConfigObject configObject = ParseDataUtil.getConfigObject();
-    public static void uploadFile(String filePath)  {
+
+    public static void uploadFile(String filePath) {
         logger.info("Ввод пути к файлу с изображением профиля");
         try {
             Robot robot = new Robot();
@@ -43,7 +44,7 @@ public class FileUploader {
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.delay(configObject.countOfPauseOfUploadImages());
-        }catch (AWTException e) {
+        } catch (AWTException e) {
             System.err.printf("Error uploading file: %s, error: %s%n", filePath, e.getMessage());
             e.printStackTrace();
         } catch (IllegalArgumentException e) {

@@ -23,6 +23,7 @@ public class AvatarAndInterestsPage extends Form {
     String interest = "//*[@class='avatar-and-interests__interests-list__item']//label[not(@for='interest_unselectall')]";
     private final IButton unselectAll = getElementFactory()
             .getButton(By.xpath("//*[@class='avatar-and-interests__interests-list__item']//label[@for='interest_unselectall']"), "unselect all");
+
     public AvatarAndInterestsPage() {
         super(By.className("avatar-and-interests-page"), "Страница ввода изображения профиля и интересов");
     }
